@@ -65,6 +65,4 @@ class Test extends TestCase
         $fridge = new Fridge();
         $this->assertFalse(true,$fridge->checkCapacity(50,'blabla'));
     }
-
-    
 }
