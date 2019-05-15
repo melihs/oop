@@ -38,20 +38,17 @@ class Fridge
      *
      * @return string
      */
-    public function checkCapacity($capacity,$method)
+    public function checkCapacity($capacity, $method)
     {
-        $random = array_rand($this->fridge_door,1);
-
-        if($capacity === 0){
-            return 'Dolap tamamen dolu.';
-        }elseif($capacity > 0 && $capacity < 60 && $method == 'setDrink'){
-            return $this->fridge_door[$random]. 'Dolap kısmen dolu.'.++$capacity. 'adet kola kaldı.';
-        }elseif($capacity > 0 && $capacity <= 60 && method == 'getDrink'){
-            return $this->fridge_door[$random]. 'Dolap kısmen dolu.'.++$capacity.'adet kola kaldı.';
-        }elseif($capacity === 60){
-            return 'Dolap tamamen dolu.';
-        }else{
-            return 'metod türü hatalı';
+        $random = array_rand($this->fridge_door, 1);
+        if ($capacity === 0) {
+            return "Dolap tamamen dolu.";
+        } elseif ($capacity > 0 && $capacity < 60 && $method == 'setDrink') {
+            return $this->fridge_door[$random]." Dolap kısmen dolu.".++$capacity.' adet kola kaldı.';
+        } elseif ($capacity > 0 && $capacity <= 60 && $method == 'getDrink') {
+            return $this->fridge_door[$random]." Dolap kısmen dolu.".--$capacity.' adet kola kaldı.';
+        } elseif ($capacity === 60) {
+            return 'tamamen dolu';
         }
     }
 

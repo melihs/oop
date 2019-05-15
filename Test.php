@@ -18,4 +18,28 @@ class Test extends TestCase
         $this->assertFalse(true,$fridge->checkDrinkType('kutu fanta'));
     }
 
+    public function test_should_take_a_drink_from_the_fridge()
+    {
+        $fridge = new Fridge();
+        $this->assertTrue(true,$fridge->getDrink('kutu kola',1));
+    }
+
+    public function test_should_not_take_a_drink_from_the_fridge()
+    {
+        $fridge = new Fridge();
+        $this->assertFalse(true,$fridge->getDrink('kutu kola',2));
+    }
+
+    public function test_should_set_a_drink_from_the_fridge()
+    {
+        $fridge = new Fridge();
+        $this->assertTrue(true,$fridge->setDrink('kutu kola',1));
+    }
+
+    public function test_should_not_set_a_drink_from_the_fridge()
+    {
+        $fridge = new Fridge();
+        $this->assertFalse(true,$fridge->setDrink('kutu kola',2));
+    }
+
 }
