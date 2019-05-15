@@ -54,5 +54,33 @@ class Fridge{
         }
     }
 
+    /**
+     * @param $drink
+     * @param $total
+     *
+     * @return string
+     */
+    public function getDrink($drink,$total)
+    {
+        if($this->getset_drink_limit === $total){
+            return $this->checkCapacity($this->checkDrinkType($drink),'getDrink');
+        }
+        return "Tek seferde sadece '1 kutu kola' alabilirsiniz";
+    }
+
+    /**
+     * @param $drink
+     * @param $total
+     *
+     * @return string
+     */
+    public function setDrink($drink,$total)
+    {
+        if($this->getset_drink_limit === $total){
+            return $this->checkCapacity($this->checkDrinkType($drink),'setDrink');
+        }
+        return "Tek seferde sadece '1 kutu kola' koyabilirsiniz";
+    }
+
 }
 
