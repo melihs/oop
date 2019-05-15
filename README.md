@@ -9,7 +9,7 @@
 $ git clone https://github.com/melihs/oop.git    
 $ cd oop && composer install 
 ```
-## Test Run Command
+## Tests
 
 ```
  $ ./vendor/bin/phpunit  Test.php 
