@@ -49,6 +49,8 @@ class Fridge
             return $this->fridge_door[$random]." Dolap kısmen dolu.".--$capacity.' adet kola kaldı.';
         } elseif ($capacity === 60) {
             return 'tamamen dolu';
+        }else {
+            return "hatalı metod değeri";
         }
     }
 

@@ -42,4 +42,29 @@ class Test extends TestCase
         $this->assertFalse(true,$fridge->setDrink('kutu kola',2));
     }
 
+    public function test_this_should_be_check_capacity_with_getDrink_method()
+    {
+        $fridge = new Fridge();
+        $this->assertTrue(true,$fridge->checkCapacity(50,'getDrink'));
+    }
+
+    public function test_this_should_not_be_check_capacity_with_getDrink_method()
+    {
+        $fridge = new Fridge();
+        $this->assertFalse(true,$fridge->checkCapacity(50,'blabla'));
+    }
+
+    public function test_this_should_be_check_capacity_with_setDrink_method()
+    {
+        $fridge = new Fridge();
+        $this->assertTrue(true,$fridge->checkCapacity(50,'setDrink'));
+    }
+
+    public function test_this_should_not_be_check_capacity_with_setDrink_method()
+    {
+        $fridge = new Fridge();
+        $this->assertFalse(true,$fridge->checkCapacity(50,'blabla'));
+    }
+
+    
 }
