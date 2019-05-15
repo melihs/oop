@@ -1,7 +1,8 @@
 <?php
 namespace oop;
 
-class Fridge{
+class Fridge
+{
     public $fridge_door = ['Dolap kapısı açık.','Dolap kapısı kapalı.'];
     const shelf = 3;
     const shelf_capacity = 20;
