@@ -9,7 +9,7 @@ class Test extends TestCase
     public function test_this_should_be_the_type_of_drink()
     {
         $fridge = new Fridge();
-        $this->assertTrue(true,$fridge->checkDrinkType('kutu kola',33));
+        $this->assertIsArray($fridge->checkDrinkType('kutu kola',33,50));
     }
 
     public function test_this_should_not_be_the_type_of_drink()
@@ -23,39 +23,43 @@ class Test extends TestCase
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('33',20));
     }
+
     public function test_this_should_not_be_quantity_33()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('blabla',20));
     }
+
     public function test_this_should_not_be_limit_20()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('33',5545455));
     }
+
     public function test_this_should_be_limit_10()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('50',10));
     }
+
     public function test_this_should_not_be_quantity_50()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('blabla',20));
     }
+
     public function test_this_should_not_be_limit_10()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->checkPiece('50',35654652));
     }
 
-
     public function test_should_take_a_drink_from_the_fridge()
     {
         $fridge = new Fridge();
         $this->assertTrue(true,$fridge->getDrink('kutu kola','33',20,1));
     }
-//
+
     public function test_should_not_take_a_drink_from_the_fridge()
     {
         $fridge = new Fridge();
