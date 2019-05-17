@@ -4,7 +4,8 @@ namespace oop;
 class Fridge
 {
     public $piece;
-    public $quantity;
+    public $piece_33cl;
+    public $piece_50cl;
     public $capacity;
     private $fridge_door;
     private $getset_drink_limit;
@@ -24,57 +25,44 @@ class Fridge
 
     /**
      * @param $drink
-     * @param $quantity
      *
      * @return string
      */
-    public function checkDrinkType($drink,$quantity)
+    public function checkDrinkType($drink)
     {
         if($drink !== $this->drink_type)
         {
-            return "Sadece '33cl kutu kola' ,'50cl kutu kola' veya 'karışık kutu kola' alabilirsiniz";
+            return "Sadece '33cl kutu kola','50cl kutu kola' veya 'karışık kutu kola' alabilirsiniz";
         }
-        else
-        {
-            return $quantity;
-        }
+        return $drink;
     }
 
     /**
-     * @param $piece
-     * @param $error
+     * @param  null  $piece_33cl
+     * @param  null  $piece_50cl
      *
      * @return float|int
      */
-    public function checkPiece($piece,$error)
+    public function checkPiece($piece_33cl = null, $piece_50cl = null)
     {
-        $this->piece = $piece;
+        if(isset($piece_33cl) && $piece_33cl <= 20 && !isset($piece_50cl))
+        {
+            return $this->capacity = $this->shelf * $piece_33cl;
+        }
+        if(isset($piece_50cl) && $piece_50cl <= 10 && !isset($piece_33cl))
+        {
+            return $this->capacity = $this->shelf * $piece_50cl;
+        }
+        if(isset($piece_50cl) && isset($piece_33cl))
+        {
+            $this->piece = $piece_33cl + 2 * $piece_50cl;
 
-        if($this->piece <= 20 && $this->piece >= 10)
-        {
-            return $this->capacity = $this->shelf * $this->piece;
+            if($this->piece <= 20)
+            {
+                return $this->capacity = $this->shelf * ($piece_33cl + 2 * $piece_50cl);
+            }
         }
-        else
-        {
-            return $error;
-        }
-    }
-
-    public function checkShelf($quantity,$piece)
-    {
-        if($quantity == 33)
-        {
-          return  $this->checkPiece($piece,'Raflar 33 cl kutu koladan en fazla 20 adet alabilir');
-        }
-        elseif($quantity == 50)
-        {
-           return $this->checkPiece($piece,'Raflar 50 cl kutu koladan en fazla 10 adet alabilir');
-        }
-        elseif($quantity == karışık)
-        {
-            //bitmedi
-        }
-
+        return 'raf kapasite aşımı';
     }
 
     /**
@@ -86,7 +74,6 @@ class Fridge
     public function checkCapacity($capacity, $method)
     {
         $random = array_rand($this->fridge_door, 1);
-
         if ($capacity === 0)
         {
             return "Dolap tamamen dolu.";
@@ -103,39 +90,41 @@ class Fridge
         {
             return 'tamamen dolu';
         }
-        else
-        {
+        else {
             return "hatalı metod değeri";
         }
     }
 
     /**
      * @param $drink
+     * @param $piece_33cl
+     * @param $piece_50cl
      * @param $total
      *
      * @return string
      */
-    public function getDrink($drink,$quantity,$piece,$total)
+    public function getDrink($drink,$piece_33cl,$piece_50cl, $total)
     {
-        if($this->getset_drink_limit === $total)
+        if($this->getset_drink_limit === $total && $this->checkDrinkType($drink))
         {
-            return $this->checkCapacity($this->checkShelf(checkDrinkType($drink,$quantity),$piece),'getDrink');
+            return $this->checkCapacity($this->checkPiece($piece_33cl,$piece_50cl),'getDrink');
         }
         return "Tek seferde sadece '1 kutu kola' alabilirsiniz";
     }
 
     /**
      * @param $drink
+     * @param $piece_33cl
+     * @param $piece_50cl
      * @param $total
      *
      * @return string
      */
-    public function setDrink($drink,$quantity,$piece,$total)
+    public function setDrink($drink,$piece_33cl,$piece_50cl,$total)
     {
-        if($this->getset_drink_limit === $total)
+        if($this->getset_drink_limit === $total && $this->checkDrinkType($drink))
         {
-            return $this->checkCapacity($this->checkShelf(checkDrinkType($drink,$quantity,$piece)),'setDrink');
-
+            return $this->checkCapacity($this->checkPiece($piece_33cl,$piece_50cl),'setDrink');
         }
         return "Tek seferde sadece '1 kutu kola' koyabilirsiniz";
     }
