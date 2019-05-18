@@ -59,7 +59,7 @@ class Fridge
 
             if($this->piece <= 20)
             {
-                return $this->capacity = $this->shelf * ($piece_33cl + 2 * $piece_50cl);
+                return $this->capacity = $this->shelf * $this->piece;
             }
         }
         return 'raf kapasite aşımı';
